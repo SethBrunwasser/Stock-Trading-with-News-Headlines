@@ -55,7 +55,7 @@ class TwitterClient(object):
 				
 				parsed_tweet['text'] = tweet.text
 				parsed_tweet['sentiment'] = self.get_tweet_sentiment(tweet.text)
-
+				parsed_tweet['datetime'] = tweet.created_at
 
 				if tweet.retweet_count > 0:
 					# if a tweet has retweets, ensures that it is only appended once
