@@ -1,0 +1,4 @@
+Notes:
+
+Use Pearson's R to correlate Sentiment Polarity with change in stock price.
+Desired: Greater than 0.8
