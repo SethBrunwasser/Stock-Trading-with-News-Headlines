@@ -33,7 +33,7 @@ class RssClient(object):
 		'''
 		titles = []
 
-		if count == 'max':
+		if count == 'maximum':
 			count = len(self.rssFeed['entries'])
 
 		try:
