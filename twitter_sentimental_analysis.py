@@ -29,18 +29,22 @@ class TwitterClient(object):
 		'''
 		return ' '.join(re.sub("(@[A-Za-z0-9]+)|([^0-9A-Za-z \t])|(\w+:\/\/\S+)", " ", tweet).split())
 
-	def get_tweet_sentiment(self, tweet):
+	def get_tweet_sentiment(self, tweet, scalar=False):
 		'''
 		Uses textblob's sentiment method to classify sentiment
-		passed tweet
+		passed tweet.
+		The scalar parameter will return the polarity ([-1.0, 1.0]) if True
 		'''
 		analysis = TextBlob(self.clean_tweet(tweet))
-		if analysis.sentiment.polarity > 0:
-			return 'positive'
-		elif analysis.sentiment.polarity == 0:
-			return 'neutral'
+		if scalar is False:
+			if analysis.sentiment.polarity > 0:
+				return 'positive'
+			elif analysis.sentiment.polarity == 0:
+				return 'neutral'
+			else:
+				return 'negative'
 		else:
-			return 'negative'
+			return analysis.sentiment.polarity
 
 	def get_tweets(self, query, count = 10):
 		'''
@@ -54,7 +58,7 @@ class TwitterClient(object):
 				parsed_tweet = {}
 				
 				parsed_tweet['text'] = tweet.text
-				parsed_tweet['sentiment'] = self.get_tweet_sentiment(tweet.text)
+				parsed_tweet['sentiment'] = self.get_tweet_sentiment(tweet.text, scalar=True)
 				parsed_tweet['datetime'] = tweet.created_at
 
 				if tweet.retweet_count > 0:
