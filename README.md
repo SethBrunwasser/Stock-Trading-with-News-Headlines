@@ -1,4 +1,4 @@
 # Stock-Trading-with-News-Headlines
-This is my attempt to trade stocks using news headlines with sentimental analysis.
+This is my research into viable trading strategies before attempting to trade stocks using news headlines with sentimental analysis.
 
-Currently in the process of performing Pearson correlation of sentiment polarity and change in stock price to determine significance of the sentiment.
+I used a Pearson correlation on tweet sentiment and the 24 hour change in stock price.
